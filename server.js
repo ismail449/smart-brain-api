@@ -23,7 +23,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
-  res.json(database.users);
+  res.json('It is ALIVE!!');
 });
 
 app.post('/signin', (req, res) => {
