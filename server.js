@@ -4,14 +4,14 @@ const bcrypt = require('bcrypt');
 var cors = require('cors');
 const knex = require('knex');
 
+const PORT = process.env.PORT;
+const DATABASE_URL = process.env.DATABASE_URL;
+
 const db = knex({
   client: 'pg',
   connection: {
-    host: '127.0.0.1',
-    port: 5432,
-    user: 'postgres',
-    password: '1032004',
-    database: 'smart-brain',
+    connectionString: DATABASE_URL,
+    ssl: true
   },
 });
 
@@ -118,7 +118,7 @@ app.put('/image', (req, res) => {
     });
 });
 
-const PORT = process.env.PORT;
+
 
 app.listen(PORT || 3000, () => {
   console.log(`app is running on port ${PORT}`);
