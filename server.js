@@ -10,8 +10,10 @@ const DATABASE_URL = process.env.DATABASE_URL;
 const db = knex({
   client: 'pg',
   connection: {
-    connectionString: DATABASE_URL,
-    ssl: true
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false,
+    },
   },
 });
 
@@ -117,8 +119,6 @@ app.put('/image', (req, res) => {
       res.status(400).json('Error getting entries');
     });
 });
-
-
 
 app.listen(PORT || 3000, () => {
   console.log(`app is running on port ${PORT}`);
